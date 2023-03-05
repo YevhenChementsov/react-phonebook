@@ -1,1 +1,1 @@
-export * from 'components/App/App';
+export { default } from 'components/App/App';
