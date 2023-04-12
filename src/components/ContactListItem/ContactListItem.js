@@ -1,15 +1,19 @@
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 
-export const ContactListItem = ({ name, number }) => {
+export const ContactListItem = ({ id, name, number, onDeleteContact }) => {
   return (
     <li>
-      <p>{name}</p>
-      <p>{number}</p>
+      <p>
+        {name} {number}
+      </p>
+      <button onClick={() => onDeleteContact(id)}>Delete</button>
     </li>
   );
 };
 
-ContactListItem.propTypes = {
-  name: PropTypes.string.isRequired,
-  number: PropTypes.string.isRequired,
-};
+// ContactListItem.propType = {
+//   id: PropTypes.string.isRequired,
+//   name: PropTypes.string.isRequired,
+//   number: PropTypes.string.isRequired,
+//   onDeleteContact: PropTypes.func.isRequired,
+// };
