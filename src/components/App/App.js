@@ -6,13 +6,17 @@ import { Container } from './App.styled';
 
 export default class App extends Component {
   state = {
-    contacts: [],
+    contacts: [
+      { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
+      { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
+    ],
   };
 
-  addContact = name => {
+  addContact = ({ name, number }) => {
     const contact = {
       id: uuidv4(),
       name,
+      number,
     };
 
     this.setState(({ contacts }) => ({
