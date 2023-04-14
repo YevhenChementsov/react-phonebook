@@ -6,10 +6,7 @@ import { Container } from './App.styled';
 
 export default class App extends Component {
   state = {
-    contacts: [
-      { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
-      { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
-    ],
+    contacts: [],
     filter: '',
   };
 
@@ -20,9 +17,11 @@ export default class App extends Component {
       number,
     };
 
-    this.setState(({ contacts }) => ({
-      contacts: [contact, ...contacts],
-    }));
+    this.setState(({ contacts }) => {
+      return contacts.some(contact => contact.name.includes(name))
+        ? window.alert(`${contact.name} is already in contacts.`)
+        : { contacts: [contact, ...contacts] };
+    });
   };
 
   deleteContact = id => {
