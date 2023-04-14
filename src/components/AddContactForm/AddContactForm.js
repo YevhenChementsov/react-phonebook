@@ -32,30 +32,34 @@ export class AddContactForm extends Component {
   };
 
   render() {
+    const { name, number } = this.state;
+    const { handleSubmit, handleChange, nameInputId, numberInputId } = this;
+
     return (
       <form
-        onSubmit={this.handleSubmit}
+        autoComplete="off"
+        onSubmit={handleSubmit}
         style={{ border: '1px solid black', width: '280px', padding: '20px' }}
       >
-        <label htmlFor={this.nameInputId}>
+        <label htmlFor={nameInputId}>
           <h3>Name</h3>
           <input
             type="text"
             name="name"
-            value={this.state.name}
-            onChange={this.handleChange}
-            id={this.nameInputId}
+            value={name}
+            onChange={handleChange}
+            id={nameInputId}
             required
           />
         </label>
-        <label htmlFor={this.numberInputId}>
+        <label htmlFor={numberInputId}>
           <h3>Number</h3>
           <input
             type="tel"
             name="number"
-            value={this.state.number}
-            onChange={this.handleChange}
-            id={this.numberInputId}
+            value={number}
+            onChange={handleChange}
+            id={numberInputId}
             required
           />
         </label>
