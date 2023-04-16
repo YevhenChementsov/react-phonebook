@@ -1,6 +1,6 @@
 import { Component } from 'react';
 
-import { AddContactForm, ContactList, SearchFilter } from 'components';
+import { ContactAddForm, ContactList, SearchFilter } from 'components';
 import { v4 as uuidv4 } from 'uuid';
 import { Container } from './App.styled';
 
@@ -68,7 +68,7 @@ export default class App extends Component {
       <Container>
         <h1 hidden>Phonebook App</h1>
         <h2>Phonebook</h2>
-        <AddContactForm onSubmit={addContact} />
+        <ContactAddForm onSubmit={addContact} />
         <h2>Contacts</h2>
         <SearchFilter value={filter} onChangeFilter={changeFilter} />
         <ContactList
