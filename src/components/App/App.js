@@ -1,13 +1,19 @@
 import { Component } from 'react';
 
 import { ContactAddForm, ContactList, SearchFilter } from 'components';
+import { Time } from 'components/Time/Time';
+import {
+  MdBattery30,
+  MdSignalCellular2Bar,
+  MdSignalWifi3Bar,
+} from 'react-icons/md';
 import { v4 as uuidv4 } from 'uuid';
 import { Container } from './App.styled';
-
 export default class App extends Component {
   state = {
     contacts: [],
     filter: '',
+    visible: false,
   };
 
   componentDidMount() {
@@ -59,6 +65,10 @@ export default class App extends Component {
     );
   };
 
+  show = () => {
+    this.setState(prevState => ({ visible: !prevState.visible }));
+  };
+
   render() {
     const { filter } = this.state;
     const { addContact, changeFilter, deleteContact } = this;
@@ -67,10 +77,24 @@ export default class App extends Component {
     return (
       <Container>
         <h1 hidden>Phonebook App</h1>
-        <h2>Phonebook</h2>
+        <section
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+          }}
+        >
+          <Time />
+          <h2>Phonebook</h2>
+          <div>
+            <MdSignalWifi3Bar />
+            <MdSignalCellular2Bar />
+            <MdBattery30 />
+          </div>
+        </section>
+        <SearchFilter value={filter} onChangeFilter={changeFilter} />
         <ContactAddForm onSubmit={addContact} />
         <h2>Contacts</h2>
-        <SearchFilter value={filter} onChangeFilter={changeFilter} />
         <ContactList
           contacts={filteredContacts}
           onDeleteContact={deleteContact}

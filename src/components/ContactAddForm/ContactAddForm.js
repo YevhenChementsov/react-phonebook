@@ -44,17 +44,25 @@ export const ContactAddForm = ({ onSubmit }) => {
     >
       <Form
         autoComplete="off"
-        style={{ border: '1px solid black', width: '280px', padding: '20px' }}
+        style={{ border: '1px solid black', width: '300px', padding: '10px' }}
       >
         <label htmlFor={nameInputId}>
           <h3>Name</h3>
           <Field type="text" name="name" id={nameInputId} required />
-          <ErrorMessage name="name" />
+          <ErrorMessage
+            name="name"
+            component="p"
+            style={{ color: 'red', fontSize: '12px' }}
+          />
         </label>
         <label htmlFor={numberInputId}>
           <h3>Number</h3>
           <Field type="tel" name="number" id={numberInputId} required />
-          <ErrorMessage name="number" />
+          <ErrorMessage
+            name="number"
+            component="p"
+            style={{ color: 'red', fontSize: '12px' }}
+          />
         </label>
         <button type="submit" style={{ display: 'block', marginTop: '20px' }}>
           Add contact
