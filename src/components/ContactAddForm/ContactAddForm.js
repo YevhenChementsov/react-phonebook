@@ -9,8 +9,22 @@ const initialValues = {
 };
 
 const contactAddValidationSchema = Yup.object().shape({
-  name: Yup.string().required(),
-  number: Yup.number().required(),
+  name: Yup.string()
+    .matches(/^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$/, {
+      message:
+        "A name can only consist of letters, apostrophes, dashes and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan, etc.",
+    })
+    .min(2)
+    .required(),
+  number: Yup.string()
+    .matches(
+      /\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}/,
+      {
+        message:
+          'The phone number must consist of the digits and may contain spaces, dashes, parentheses and may begin with +',
+      },
+    )
+    .required(),
 });
 
 export const ContactAddForm = ({ onSubmit }) => {
