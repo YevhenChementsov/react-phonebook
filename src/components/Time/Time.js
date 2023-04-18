@@ -1,14 +1,16 @@
 import { Component } from 'react';
 
 export class Time extends Component {
-  state = { date: new Date() };
+  state = {
+    date: new Date(),
+  };
 
   componentDidMount() {
-    this.timerID = setInterval(() => this.tick(), 1000);
+    this.timeID = setInterval(() => this.tick(), 1000);
   }
 
   componentWillUnmount() {
-    clearInterval(this.timerID);
+    clearInterval(this.timeID);
   }
 
   tick() {
@@ -18,6 +20,8 @@ export class Time extends Component {
   }
 
   render() {
-    return <h2>{this.state.date.toLocaleTimeString()}</h2>;
+    return (
+      <p>{this.state.date.toLocaleTimeString([], { timeStyle: 'short' })}</p>
+    );
   }
 }

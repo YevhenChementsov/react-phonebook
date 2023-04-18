@@ -3,6 +3,7 @@ import { Component } from 'react';
 import { ContactAddForm, ContactList, SearchFilter } from 'components';
 import { Time } from 'components/Time/Time';
 import {
+  MdAddCircle,
   MdBattery30,
   MdSignalCellular2Bar,
   MdSignalWifi3Bar,
@@ -11,7 +12,12 @@ import { v4 as uuidv4 } from 'uuid';
 import { Container } from './App.styled';
 export default class App extends Component {
   state = {
-    contacts: [],
+    contacts: [
+      { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
+      { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
+      { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
+      { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
+    ],
     filter: '',
     visible: false,
   };
@@ -65,7 +71,7 @@ export default class App extends Component {
     );
   };
 
-  show = () => {
+  toggle = () => {
     this.setState(prevState => ({ visible: !prevState.visible }));
   };
 
@@ -85,20 +91,26 @@ export default class App extends Component {
           }}
         >
           <Time />
-          <h2>Phonebook</h2>
           <div>
             <MdSignalWifi3Bar />
             <MdSignalCellular2Bar />
             <MdBattery30 />
           </div>
         </section>
-        <SearchFilter value={filter} onChangeFilter={changeFilter} />
+        <section>
+          <SearchFilter
+            title="Contacts"
+            value={filter}
+            onChangeFilter={changeFilter}
+          />
+        </section>
+
         <ContactAddForm onSubmit={addContact} />
-        <h2>Contacts</h2>
         <ContactList
           contacts={filteredContacts}
           onDeleteContact={deleteContact}
         />
+        <MdAddCircle color="green" size={48} />
       </Container>
     );
   }

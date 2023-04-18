@@ -27,13 +27,24 @@ const contactAddValidationSchema = Yup.object().shape({
     .required(),
 });
 
+const ContactFormInput = ({ label, name, id, type }) => {
+  return (
+    <label htmlFor={id}>
+      <h3>{label}</h3>
+      <Field type={type} name={name} id={id} required />
+      <ErrorMessage name={name} component="div" />
+    </label>
+  );
+};
+
 export const ContactAddForm = ({ onSubmit }) => {
   const nameInputId = uuidv4();
   const numberInputId = uuidv4();
 
-  const handleSubmit = (values, { resetForm }) => {
+  const handleSubmit = (values, { resetForm, setSubmitting }) => {
     onSubmit(values);
     resetForm();
+    setSubmitting(false);
   };
 
   return (
@@ -42,34 +53,30 @@ export const ContactAddForm = ({ onSubmit }) => {
       validationSchema={contactAddValidationSchema}
       onSubmit={handleSubmit}
     >
-      <Form
-        autoComplete="off"
-        style={{ border: '1px solid black', width: '300px', padding: '10px' }}
-      >
-        <label htmlFor={nameInputId}>
-          <h3>Name</h3>
-          <Field type="text" name="name" id={nameInputId} required />
-          <ErrorMessage
-            name="name"
-            component="p"
-            style={{ color: 'red', fontSize: '12px' }}
-          />
-        </label>
-        <label htmlFor={numberInputId}>
-          <h3>Number</h3>
-          <Field type="tel" name="number" id={numberInputId} required />
-          <ErrorMessage
-            name="number"
-            component="p"
-            style={{ color: 'red', fontSize: '12px' }}
-          />
-        </label>
-        <button type="submit" style={{ display: 'block', marginTop: '20px' }}>
-          Add contact
-        </button>
+      <Form autoComplete="off">
+        <ContactFormInput
+          label="Name"
+          name="name"
+          id={nameInputId}
+          type="text"
+        />
+        <ContactFormInput
+          label="Number"
+          name="number"
+          id={numberInputId}
+          type="tel"
+        />
+        <button type="submit">Add contact</button>
       </Form>
     </Formik>
   );
+};
+
+ContactFormInput.propTypes = {
+  label: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
 };
 
 ContactAddForm.propTypes = {
