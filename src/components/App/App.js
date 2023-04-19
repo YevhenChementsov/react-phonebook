@@ -1,13 +1,14 @@
 import { Component } from 'react';
 
-import { ContactAddForm, ContactList, SearchFilter } from 'components';
-import { Time } from 'components/Time/Time';
 import {
-  MdAddCircle,
-  MdBattery30,
-  MdSignalCellular2Bar,
-  MdSignalWifi3Bar,
-} from 'react-icons/md';
+  ContactAddForm,
+  ContactList,
+  IconButton,
+  IconsWrapper,
+  SearchFilter,
+  Time,
+} from 'components';
+import { ReactComponent as AddIcon } from 'icons/plus.svg';
 import { v4 as uuidv4 } from 'uuid';
 import { Container } from './App.styled';
 export default class App extends Component {
@@ -31,10 +32,15 @@ export default class App extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const { contacts } = this.state;
+    const newContacts = this.state.contacts;
+    const prevContacts = prevState.contacts;
 
-    if (contacts !== prevState.contacts) {
-      localStorage.setItem('contactList', JSON.stringify(contacts));
+    if (newContacts !== prevContacts) {
+      localStorage.setItem('contactList', JSON.stringify(newContacts));
+    }
+
+    if (newContacts.length > prevContacts.length && prevContacts.length !== 0) {
+      this.toggle();
     }
   }
 
@@ -77,7 +83,7 @@ export default class App extends Component {
 
   render() {
     const { filter } = this.state;
-    const { addContact, changeFilter, deleteContact } = this;
+    const { addContact, changeFilter, deleteContact, toggle } = this;
     const filteredContacts = this.getFilteredContacts();
 
     return (
@@ -91,26 +97,23 @@ export default class App extends Component {
           }}
         >
           <Time />
-          <div>
-            <MdSignalWifi3Bar />
-            <MdSignalCellular2Bar />
-            <MdBattery30 />
-          </div>
-        </section>
-        <section>
-          <SearchFilter
-            title="Contacts"
-            value={filter}
-            onChangeFilter={changeFilter}
-          />
+          <IconsWrapper />
         </section>
 
-        <ContactAddForm onSubmit={addContact} />
-        <ContactList
-          contacts={filteredContacts}
-          onDeleteContact={deleteContact}
-        />
-        <MdAddCircle color="green" size={48} />
+        {this.state.visible ? (
+          <>
+            <SearchFilter value={filter} onChangeFilter={changeFilter} />
+            <ContactList
+              contacts={filteredContacts}
+              onDeleteContact={deleteContact}
+            />
+          </>
+        ) : (
+          <ContactAddForm onSubmit={addContact} />
+        )}
+        <IconButton onClick={toggle}>
+          <AddIcon width="24" height="24" fill="#fff" />
+        </IconButton>
       </Container>
     );
   }

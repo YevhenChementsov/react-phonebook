@@ -1,7 +1,8 @@
-import { ErrorMessage, Field, Form, Formik } from 'formik';
+import { Form, Formik } from 'formik';
 import PropTypes from 'prop-types';
 import { v4 as uuidv4 } from 'uuid';
 import * as Yup from 'yup';
+import { ContactFormInput } from './ContactFormInput/ContactFormInput';
 
 const initialValues = {
   name: '',
@@ -18,7 +19,7 @@ const contactAddValidationSchema = Yup.object().shape({
     .required(),
   number: Yup.string()
     .matches(
-      /\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}/,
+      /^\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}$/,
       {
         message:
           'The phone number must consist of the digits and may contain spaces, dashes, parentheses and may begin with +',
@@ -27,31 +28,26 @@ const contactAddValidationSchema = Yup.object().shape({
     .required(),
 });
 
-const ContactFormInput = ({ label, name, id, type }) => {
-  return (
-    <label htmlFor={id}>
-      <h3>{label}</h3>
-      <Field type={type} name={name} id={id} required />
-      <ErrorMessage name={name} component="div" />
-    </label>
-  );
-};
-
 export const ContactAddForm = ({ onSubmit }) => {
   const nameInputId = uuidv4();
   const numberInputId = uuidv4();
 
-  const handleSubmit = (values, { resetForm, setSubmitting }) => {
-    onSubmit(values);
-    resetForm();
-    setSubmitting(false);
+  const handleAddContact = async (values, { resetForm, setSubmitting }) => {
+    try {
+      await onSubmit(values);
+      resetForm();
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
     <Formik
       initialValues={initialValues}
       validationSchema={contactAddValidationSchema}
-      onSubmit={handleSubmit}
+      onSubmit={handleAddContact}
     >
       <Form autoComplete="off">
         <ContactFormInput
@@ -70,13 +66,6 @@ export const ContactAddForm = ({ onSubmit }) => {
       </Form>
     </Formik>
   );
-};
-
-ContactFormInput.propTypes = {
-  label: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  id: PropTypes.string.isRequired,
-  type: PropTypes.string.isRequired,
 };
 
 ContactAddForm.propTypes = {

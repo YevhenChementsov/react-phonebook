@@ -1,9 +1,8 @@
 import PropTypes from 'prop-types';
 
-export const SearchFilter = ({ title, value, onChangeFilter }) => {
+export const SearchFilter = ({ value, onChangeFilter }) => {
   return (
     <label>
-      <h2>{title}</h2>
       <input
         type="text"
         value={value}
@@ -15,7 +14,6 @@ export const SearchFilter = ({ title, value, onChangeFilter }) => {
 };
 
 SearchFilter.propTypes = {
-  title: PropTypes.string.isRequired,
   value: PropTypes.string.isRequired,
   onChangeFilter: PropTypes.func.isRequired,
 };
