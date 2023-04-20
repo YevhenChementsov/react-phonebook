@@ -1,9 +1,10 @@
 import PropTypes from 'prop-types';
+import { Input } from './SearchFilter.styled';
 
 export const SearchFilter = ({ value, onChangeFilter }) => {
   return (
     <label>
-      <input
+      <Input
         type="text"
         value={value}
         onChange={onChangeFilter}

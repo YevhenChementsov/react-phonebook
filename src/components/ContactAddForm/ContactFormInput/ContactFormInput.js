@@ -1,12 +1,12 @@
-import { ErrorMessage, Field } from 'formik';
 import PropTypes from 'prop-types';
+import { Error, InputName, Input } from './ContactFormInput.styled';
 
 export const ContactFormInput = ({ label, name, id, type }) => {
   return (
     <label htmlFor={id}>
-      <h3>{label}</h3>
-      <Field type={type} name={name} id={id} required />
-      <ErrorMessage name={name} component="div" />
+      <InputName>{label}</InputName>
+      <Input type={type} name={name} id={id} required />
+      <Error name={name} component="div" />
     </label>
   );
 };

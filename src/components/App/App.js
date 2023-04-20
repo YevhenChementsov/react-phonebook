@@ -3,14 +3,22 @@ import { Component } from 'react';
 import {
   ContactAddForm,
   ContactList,
-  IconButton,
   IconsWrapper,
   SearchFilter,
   Time,
 } from 'components';
-import { ReactComponent as AddIcon } from 'icons/plus.svg';
+import { ReactComponent as Close } from 'icons/reply.svg';
+import { ReactComponent as Open } from 'icons/user-plus.svg';
 import { v4 as uuidv4 } from 'uuid';
-import { Container } from './App.styled';
+import {
+  ButtonIcon,
+  Container,
+  Footer,
+  Header,
+  Main,
+  Title,
+  Wrapper,
+} from './App.styled';
 export default class App extends Component {
   state = {
     contacts: [
@@ -41,6 +49,10 @@ export default class App extends Component {
 
     if (newContacts.length > prevContacts.length && prevContacts.length !== 0) {
       this.toggle();
+    }
+
+    if (newContacts.length === 9) {
+      return window.alert(`Your memory is full. Please delete some contacts!`);
     }
   }
 
@@ -82,38 +94,42 @@ export default class App extends Component {
   };
 
   render() {
-    const { filter } = this.state;
+    const { filter, visible, contacts } = this.state;
     const { addContact, changeFilter, deleteContact, toggle } = this;
     const filteredContacts = this.getFilteredContacts();
 
     return (
       <Container>
         <h1 hidden>Phonebook App</h1>
-        <section
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-          }}
-        >
-          <Time />
-          <IconsWrapper />
-        </section>
-
-        {this.state.visible ? (
-          <>
+        <Header>
+          <Wrapper>
+            <Time />
+            <IconsWrapper />
+          </Wrapper>
+          <Title>Contacts</Title>
+          {!visible && (
             <SearchFilter value={filter} onChangeFilter={changeFilter} />
+          )}
+        </Header>
+        <Main>
+          {visible ? (
+            <ContactAddForm onSubmit={addContact} />
+          ) : (
             <ContactList
               contacts={filteredContacts}
               onDeleteContact={deleteContact}
             />
-          </>
-        ) : (
-          <ContactAddForm onSubmit={addContact} />
-        )}
-        <IconButton onClick={toggle}>
-          <AddIcon width="24" height="24" fill="#fff" />
-        </IconButton>
+          )}
+        </Main>
+        <Footer>
+          <ButtonIcon onClick={toggle} disabled={contacts.length === 9}>
+            {visible ? (
+              <Close width="24" height="24" />
+            ) : (
+              <Open width="24" height="24" />
+            )}
+          </ButtonIcon>
+        </Footer>
       </Container>
     );
   }

@@ -1,10 +1,9 @@
 import PropTypes from 'prop-types';
-import { ButtonIcon } from './IconButton.styled';
 
 export const IconButton = ({ children, onClick, ...allyProps }) => (
-  <ButtonIcon type="button" onClick={onClick} {...allyProps}>
+  <button type="button" onClick={onClick} {...allyProps}>
     {children}
-  </ButtonIcon>
+  </button>
 );
 
 IconButton.defaultProps = {

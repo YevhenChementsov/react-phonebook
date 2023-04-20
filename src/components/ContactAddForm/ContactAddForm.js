@@ -2,6 +2,7 @@ import { Form, Formik } from 'formik';
 import PropTypes from 'prop-types';
 import { v4 as uuidv4 } from 'uuid';
 import * as Yup from 'yup';
+import { SubmitFormButton } from './ContactAddForm.styled';
 import { ContactFormInput } from './ContactFormInput/ContactFormInput';
 
 const initialValues = {
@@ -11,13 +12,15 @@ const initialValues = {
 
 const contactAddValidationSchema = Yup.object().shape({
   name: Yup.string()
+    .min(2)
+    .max(25)
     .matches(/^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$/, {
       message:
         "A name can only consist of letters, apostrophes, dashes and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan, etc.",
     })
-    .min(2)
     .required(),
   number: Yup.string()
+    .max(24)
     .matches(
       /^\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}$/,
       {
@@ -62,7 +65,7 @@ export const ContactAddForm = ({ onSubmit }) => {
           id={numberInputId}
           type="tel"
         />
-        <button type="submit">Add contact</button>
+        <SubmitFormButton type="submit">Add contact</SubmitFormButton>
       </Form>
     </Formik>
   );
