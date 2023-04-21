@@ -8,7 +8,7 @@ export const SearchFilter = ({ value, onChangeFilter }) => {
         type="text"
         value={value}
         onChange={onChangeFilter}
-        placeholder="Filter by name"
+        placeholder="Search by name"
       />
     </label>
   );

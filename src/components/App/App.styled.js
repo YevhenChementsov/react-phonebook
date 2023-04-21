@@ -13,8 +13,8 @@ export const Container = styled.div`
     #3a5dae 20%,
     #b4c5f4 40%,
     #fef5da 60%,
-    #4d4c49 80%,
-    #3a668c 100%
+    #85aad8 80%,
+    #436795 100%
   );
   border: 5px solid #000000cc;
   border-radius: 30px;
@@ -42,8 +42,8 @@ export const Footer = styled.footer`
 `;
 
 export const Title = styled.h2`
-  font-family: 'Caveat', cursive;
-  font-size: 32px;
+  font-family: 'Segoe UI';
+  font-size: 28px;
   text-align: center;
 `;
 

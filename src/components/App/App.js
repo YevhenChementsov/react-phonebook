@@ -1,5 +1,6 @@
 import { Component } from 'react';
 
+import { ToastContainer, toast } from 'react-toastify';
 import {
   ContactAddForm,
   ContactList,
@@ -51,8 +52,10 @@ export default class App extends Component {
       this.toggle();
     }
 
-    if (newContacts.length === 9) {
-      return window.alert(`Your memory is full. Please delete some contacts!`);
+    if (newContacts.length >= 9) {
+      this.showErrorNotification(
+        'Your memory is full. Please, delete some contacts!',
+      );
     }
   }
 
@@ -65,7 +68,7 @@ export default class App extends Component {
 
     this.setState(({ contacts }) => {
       return contacts.some(contact => contact.name.includes(name))
-        ? window.alert(`${contact.name} is already in contacts.`)
+        ? this.showWarnNotification(`${contact.name} is already in contacts.`)
         : { contacts: [contact, ...contacts] };
     });
   };
@@ -88,6 +91,30 @@ export default class App extends Component {
       contact.name.toLowerCase().includes(lowerCaseFilter),
     );
   };
+
+  showErrorNotification = message =>
+    toast.error(message, {
+      position: 'top-center',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: 'colored',
+    });
+
+  showWarnNotification = message =>
+    toast.warn(message, {
+      position: 'top-center',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: 'colored',
+    });
 
   toggle = () => {
     this.setState(prevState => ({ visible: !prevState.visible }));
@@ -130,6 +157,7 @@ export default class App extends Component {
             )}
           </ButtonIcon>
         </Footer>
+        <ToastContainer />
       </Container>
     );
   }

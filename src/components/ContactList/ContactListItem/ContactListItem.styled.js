@@ -3,14 +3,14 @@ import { IconButton } from 'components/IconButton/IconButton';
 
 export const Name = styled.p`
   width: 234px;
-  font-family: 'Dancing Script', cursive;
+  font-family: 'Caveat', cursive;
   font-size: 20px;
   overflow-wrap: break-word;
 `;
 
 export const PhoneNumber = styled.p`
   width: 234px;
-  font-family: 'Dancing Script', cursive;
+  font-family: 'Caveat', cursive;
   font-size: 16px;
 `;
 

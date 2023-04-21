@@ -4,7 +4,7 @@ import { ErrorMessage, Field } from 'formik';
 export const InputName = styled.h3`
   margin-top: 10px;
 
-  font-family: 'Dancing Script', cursive;
+  font-family: 'Caveat', cursive;
   font-size: 24px;
 `;
 
@@ -20,7 +20,7 @@ export const Input = styled(Field)`
 
   background-color: ${props => props.theme.colors.inputBgColor};
   border-radius: 15px;
-  border: none;
+  border: ${props => `2px solid ${props.theme.colors.borderColor}`};
 
   &:focus {
     border: none;

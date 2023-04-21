@@ -8,7 +8,7 @@ export const Input = styled.input`
   border-radius: 15px;
   width: 270px;
   height: 38px;
-  border: none;
+  border: ${props => `2px solid ${props.theme.colors.borderColor}`};
   background-color: ${props => props.theme.colors.inputBgColor};
 
   &::placeholder {

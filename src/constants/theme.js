@@ -6,5 +6,6 @@ export const theme = Object.freeze({
     blue: '#6666ff',
     black: '#000000',
     inputBgColor: '#fef5da',
+    borderColor: '#436795',
   },
 });

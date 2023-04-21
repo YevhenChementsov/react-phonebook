@@ -1,5 +1,10 @@
 import { Component } from 'react';
 
+import styled from '@emotion/styled';
+
+const Clock = styled.p`
+  font-weight: 700;
+`;
 export class Time extends Component {
   state = {
     date: new Date(),
@@ -21,7 +26,9 @@ export class Time extends Component {
 
   render() {
     return (
-      <p>{this.state.date.toLocaleTimeString([], { timeStyle: 'short' })}</p>
+      <Clock>
+        {this.state.date.toLocaleTimeString([], { timeStyle: 'short' })}
+      </Clock>
     );
   }
 }
