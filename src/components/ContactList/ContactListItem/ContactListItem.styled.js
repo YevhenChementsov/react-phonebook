@@ -4,6 +4,7 @@ import { IconButton } from 'components/IconButton/IconButton';
 export const Name = styled.p`
   width: 234px;
   font-family: 'Caveat', cursive;
+  font-weight: 600;
   font-size: 20px;
   overflow-wrap: break-word;
 `;
@@ -11,6 +12,7 @@ export const Name = styled.p`
 export const PhoneNumber = styled.p`
   width: 234px;
   font-family: 'Caveat', cursive;
+  font-weight: 600;
   font-size: 16px;
 `;
 
