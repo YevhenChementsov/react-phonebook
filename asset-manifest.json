@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/react-phonebook/static/css/main.047e519c.css",
-    "main.js": "/react-phonebook/static/js/main.9e198c0f.js",
+    "main.css": "/react-phonebook/static/css/main.6f7b875c.css",
+    "main.js": "/react-phonebook/static/js/main.ffbe13c3.js",
     "index.html": "/react-phonebook/index.html",
     "static/media/user-plus.svg": "/react-phonebook/static/media/user-plus.e901c6d03d1eef2f1dd14840b8605256.svg",
     "static/media/bin.svg": "/react-phonebook/static/media/bin.27699b2c45d9011a67225e232443e414.svg",
     "static/media/reply.svg": "/react-phonebook/static/media/reply.e2ecfd77b2a1a40b4d83a8843984f917.svg",
-    "main.047e519c.css.map": "/react-phonebook/static/css/main.047e519c.css.map",
-    "main.9e198c0f.js.map": "/react-phonebook/static/js/main.9e198c0f.js.map"
+    "main.6f7b875c.css.map": "/react-phonebook/static/css/main.6f7b875c.css.map",
+    "main.ffbe13c3.js.map": "/react-phonebook/static/js/main.ffbe13c3.js.map"
   },
   "entrypoints": [
-    "static/css/main.047e519c.css",
-    "static/js/main.9e198c0f.js"
+    "static/css/main.6f7b875c.css",
+    "static/js/main.ffbe13c3.js"
   ]
 }
