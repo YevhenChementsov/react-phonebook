@@ -28,7 +28,6 @@ export const ContactListButton = styled(IconButton)`
 
   background-color: transparent;
   border: none;
-  border-radius: 50%;
   transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
   svg {

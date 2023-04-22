@@ -1,16 +1,23 @@
 import PropTypes from 'prop-types';
-import { Input } from './SearchFilter.styled';
+import { FaSearch, FaSortAlphaDown } from 'react-icons/fa';
+import { Input, Label, SortButton, SerchBox } from './SearchFilter.styled';
 
-export const SearchFilter = ({ value, onChangeFilter }) => {
+export const SearchFilter = ({ value, onChangeFilter, onSortContacts }) => {
   return (
-    <label>
+    <Label>
+      <SerchBox>
+        <FaSearch />
+      </SerchBox>
       <Input
         type="text"
         value={value}
         onChange={onChangeFilter}
         placeholder="Search by name"
       />
-    </label>
+      <SortButton type="button" onClick={onSortContacts}>
+        <FaSortAlphaDown />
+      </SortButton>
+    </Label>
   );
 };
 

@@ -1,6 +1,5 @@
 import { Component } from 'react';
 
-import { ToastContainer, toast } from 'react-toastify';
 import {
   ContactAddForm,
   ContactList,
@@ -10,6 +9,7 @@ import {
 } from 'components';
 import { ReactComponent as Close } from 'icons/reply.svg';
 import { ReactComponent as Open } from 'icons/user-plus.svg';
+import { ToastContainer, toast } from 'react-toastify';
 import { v4 as uuidv4 } from 'uuid';
 import {
   ButtonIcon,
@@ -40,7 +40,7 @@ export default class App extends Component {
     }
   }
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(_, prevState) {
     const newContacts = this.state.contacts;
     const prevContacts = prevState.contacts;
 
@@ -53,9 +53,10 @@ export default class App extends Component {
     }
 
     if (newContacts.length >= 9) {
-      this.showErrorNotification(
-        'Your memory is full. Please, delete some contacts!',
-      );
+      const message = 'Your memory is full. Please, delete some contacts!';
+      const typeOfMessage = 'error';
+
+      this.showNotification(typeOfMessage, message);
     }
   }
 
@@ -67,20 +68,23 @@ export default class App extends Component {
     };
 
     this.setState(({ contacts }) => {
+      const message = `${contact.name} is already in contacts.`;
+      const typeOfMessage = 'warn';
+
       return contacts.some(contact => contact.name.includes(name))
-        ? this.showWarnNotification(`${contact.name} is already in contacts.`)
+        ? this.showNotification(typeOfMessage, message)
         : { contacts: [contact, ...contacts] };
     });
+  };
+
+  changeFilter = e => {
+    this.setState({ filter: e.currentTarget.value });
   };
 
   deleteContact = id => {
     this.setState(({ contacts }) => ({
       contacts: contacts.filter(contact => contact.id !== id),
     }));
-  };
-
-  changeFilter = e => {
-    this.setState({ filter: e.currentTarget.value });
   };
 
   getFilteredContacts = () => {
@@ -92,10 +96,10 @@ export default class App extends Component {
     );
   };
 
-  showErrorNotification = message =>
-    toast.error(message, {
+  showNotification = (type, message) =>
+    toast[type](message, {
       position: 'top-center',
-      autoClose: 5000,
+      autoClose: 3000,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,
@@ -104,17 +108,15 @@ export default class App extends Component {
       theme: 'colored',
     });
 
-  showWarnNotification = message =>
-    toast.warn(message, {
-      position: 'top-center',
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: 'colored',
-    });
+  sortContacts = () => {
+    const { contacts } = this.state;
+
+    const sortedContacts = [...contacts].sort((a, b) =>
+      a.name.localeCompare(b.name),
+    );
+
+    this.setState({ contacts: sortedContacts });
+  };
 
   toggle = () => {
     this.setState(prevState => ({ visible: !prevState.visible }));
@@ -122,7 +124,8 @@ export default class App extends Component {
 
   render() {
     const { filter, visible, contacts } = this.state;
-    const { addContact, changeFilter, deleteContact, toggle } = this;
+    const { addContact, changeFilter, deleteContact, sortContacts, toggle } =
+      this;
     const filteredContacts = this.getFilteredContacts();
 
     return (
@@ -135,7 +138,11 @@ export default class App extends Component {
           </Wrapper>
           <Title>Contacts</Title>
           {!visible && (
-            <SearchFilter value={filter} onChangeFilter={changeFilter} />
+            <SearchFilter
+              value={filter}
+              onChangeFilter={changeFilter}
+              onSortContacts={sortContacts}
+            />
           )}
         </Header>
         <Main>
