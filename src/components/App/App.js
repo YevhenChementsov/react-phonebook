@@ -50,13 +50,13 @@ export default class App extends Component {
 
     if (newContacts.length > prevContacts.length && prevContacts.length !== 0) {
       this.toggle();
-    }
 
-    if (newContacts.length >= 9) {
-      const message = 'Your memory is full. Please, delete some contacts!';
-      const typeOfMessage = 'error';
+      if (newContacts.length >= 9) {
+        const message = 'Your memory is full. Please, delete some contacts!';
+        const typeOfMessage = 'error';
 
-      this.showNotification(typeOfMessage, message);
+        this.showNotification(typeOfMessage, message);
+      }
     }
   }
 
