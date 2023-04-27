@@ -1,4 +1,4 @@
-**Read in other languages: [Russian](README.md), [Ukrainian](README.ua.md),
+**Read in other languages: [Русский](README.md), [Українська](README.ua.md),
 [English](README.en.md).**
 
 # Phonebook
