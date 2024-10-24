@@ -1,27 +1,50 @@
-**Читать на других языках: [Русский](README.md), [Українська](README.ua.md),
-[English](README.en.md).**
+# React + TypeScript + Vite
 
-# Формы. Жизненный цикл компонента.
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-- Создан репозиторий `react-phonebook`.
-- Компоненты задания рендерятся на одной странице, внутри общего контейнера -
-  корневого компонента `<App>`.
-- В состоянии компонентов хранится минимально необходимый набор данных,
-  остальное вычисляется.
-- В шапке репозитория есть ссылка на живую страницу на `GitHub pages`.
-- При запуске кода задания, в консоли нету ошибок и предупреждений.
-- Для каждого компонента есть отдельная папка с файлом React-компонента и файлом
-  стилей.
-- Для компонентов описаны `propTypes`, и где необходимо, `defaultProps`.
-- Все что компонент ожидает в виде пропов, передается ему при вызове.
-- Имена компонентов понятные, описательные.
-- JS-код чистый и понятный, используется `Prettier`.
-- Стилизация делается только `SASS`, `CSS-модулями`, `Styled Components` или
-  `Emotion`, поэтому классы в результирующем DOM могут отличаться от примеров.
-- Для стилизации достаточно позиционирование и размеры приближенные к макету.
-  Компоненты, в первую очередь, должны работать, а уже потом быть красивые,
-  выделяй 20% времени на стилизацию и 80% на JS.
+Currently, two official plugins are available:
 
-## Задание
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-- [Задание 1 - Телефонная книга](assets/phonebook/README.md)
+## Expanding the ESLint configuration
+
+If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+
+- Configure the top-level `parserOptions` property like this:
+
+```js
+export default tseslint.config({
+  languageOptions: {
+    // other options...
+    parserOptions: {
+      project: ['./tsconfig.node.json', './tsconfig.app.json'],
+      tsconfigRootDir: import.meta.dirname,
+    },
+  },
+})
+```
+
+- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
+- Optionally add `...tseslint.configs.stylisticTypeChecked`
+- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+
+```js
+// eslint.config.js
+import react from 'eslint-plugin-react'
+
+export default tseslint.config({
+  // Set the react version
+  settings: { react: { version: '18.3' } },
+  plugins: {
+    // Add the react plugin
+    react,
+  },
+  rules: {
+    // other rules...
+    // Enable its recommended rules
+    ...react.configs.recommended.rules,
+    ...react.configs['jsx-runtime'].rules,
+  },
+})
+```
