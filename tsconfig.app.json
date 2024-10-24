@@ -19,7 +19,13 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-    "noUncheckedSideEffectImports": true
+    "noUncheckedSideEffectImports": true,
+
+    /* Aliases with default import */
+    "paths": {
+      "components/*": ["./src/components/*"],
+      "constants/*": ["./src/constants/*"]
+    }
   },
   "include": ["src"]
 }
