@@ -1,9 +1,9 @@
-import { Clock } from 'components/Clock/Clock';
+import { IconsWrapper } from 'components/IconsWrapper/IconsWrapper';
 
 export function App() {
   return (
     <>
-      <Clock />
+      <IconsWrapper />
     </>
   );
 }

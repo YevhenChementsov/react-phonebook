@@ -6,16 +6,20 @@ import React from 'react';
 //   'aria-label': string;
 // }
 
-type IconButtonProps = React.ComponentProps<'button'>;
+type IconButtonProps = React.ComponentProps<'button'> & {
+  onClick?: () => void;
+};
 
 export function IconButton({
   children,
   onClick,
   ...allyProps
-}: IconButtonProps): void {
-  <button type="button" onClick={onClick} {...allyProps}>
-    {children}
-  </button>;
+}: IconButtonProps): JSX.Element {
+  return (
+    <button type="button" onClick={onClick} {...allyProps}>
+      {children}
+    </button>
+  );
 }
 
 IconButton.defaultProps = {
