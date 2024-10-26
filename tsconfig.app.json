@@ -24,7 +24,8 @@
     /* Aliases with default import */
     "paths": {
       "components/*": ["./src/components/*"],
-      "constants/*": ["./src/constants/*"]
+      "constants/*": ["./src/constants/*"],
+      "icons/*": ["./src/icons/*"]
     }
   },
   "include": ["src"]

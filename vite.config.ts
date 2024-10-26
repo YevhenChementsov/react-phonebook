@@ -11,6 +11,7 @@ export default defineConfig({
     alias: {
       components: resolve(__dirname, 'src/components'),
       constants: resolve(__dirname, 'src/constants'),
+      icons: resolve(__dirname, 'src/icons'),
     },
   },
 });
