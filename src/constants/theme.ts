@@ -1,24 +1,12 @@
-export interface ThemeProps {
-  colors: {
-    black: string;
-    white: string;
-    green: string;
-    red: string;
-    blue: string;
+export type ThemeProps = typeof theme;
 
-    inputBgColor: string;
-    borderColor: string;
-  };
-}
-
-export const theme: ThemeProps = {
+export const theme = {
   colors: {
     black: '#000000',
     white: '#ffffff',
     green: '#008000',
     red: '#ff0000',
     blue: '#6666ff',
-
     inputBgColor: '#fef5da',
     borderColor: '#436795',
   },

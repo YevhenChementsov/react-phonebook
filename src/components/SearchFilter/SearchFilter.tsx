@@ -1,4 +1,5 @@
 import { FaSearch, FaSortAlphaDown } from 'react-icons/fa';
+
 import { Input, Label, SearchBox, SortButton } from './SearchFilter.styled';
 
 interface SearchFilterProps {
