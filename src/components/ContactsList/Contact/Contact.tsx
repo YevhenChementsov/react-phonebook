@@ -1,4 +1,4 @@
-import { ReactComponent as DeleteIcon } from 'icons/bin.svg';
+// import DeleteIcon from 'icons/bin.svg';
 import { type Contact } from '../ContactsList';
 
 import { ContactListButton, Name, PhoneNumber } from './Contact.styled';
@@ -19,7 +19,8 @@ export function Contact({ name, number, onDeleteContact }: ContactProps) {
       <Name>{name}</Name>
       <PhoneNumber>{number}</PhoneNumber>
       <ContactListButton onClick={onDeleteContact}>
-        <DeleteIcon width="16" height="16" />
+        <>Delete</>
+        {/* <DeleteIcon width="16" height="16" /> */}
       </ContactListButton>
     </>
   );

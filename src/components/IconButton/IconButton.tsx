@@ -11,8 +11,8 @@ type IconButtonProps = React.ComponentProps<'button'> & {
 };
 
 export function IconButton({
-  children,
-  onClick,
+  children = null,
+  onClick = () => null,
   ...allyProps
 }: IconButtonProps): JSX.Element {
   return (
@@ -21,8 +21,3 @@ export function IconButton({
     </button>
   );
 }
-
-IconButton.defaultProps = {
-  children: null,
-  onClick: () => null,
-};

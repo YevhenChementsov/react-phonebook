@@ -6,7 +6,7 @@ import { SubmitFormButton } from './AddContactForm.styled';
 import { ContactFormInput } from './ContactFormInput/ContactFormInput';
 
 interface ContactAddFormProps {
-  onSubmit: (values: ContactFormValues) => Promise<void>;
+  onSubmit: (values: ContactFormValues) => void;
 }
 
 interface ContactFormValues {
@@ -46,7 +46,7 @@ export function ContactAddForm({ onSubmit }: ContactAddFormProps) {
     { resetForm, setSubmitting }: FormikHelpers<ContactFormValues>,
   ) => {
     try {
-      await onSubmit(values);
+      await Promise.resolve(onSubmit(values));
       resetForm();
     } catch (error) {
       console.log(error);

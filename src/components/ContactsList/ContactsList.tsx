@@ -7,21 +7,26 @@ export interface Contact {
   number: string;
 }
 
-interface ContactListProps {
+interface ContactsListProps {
   contacts: Contact[];
   onDeleteContact: (id: string) => void;
 }
 
-export function ContactList({ contacts, onDeleteContact }: ContactListProps) {
-  <ul>
-    {contacts.map(({ id, name, number }) => (
-      <Item key={id}>
-        <Contact
-          name={name}
-          number={number}
-          onDeleteContact={() => onDeleteContact(id)}
-        />
-      </Item>
-    ))}
-  </ul>;
+export function ContactsList({
+  contacts,
+  onDeleteContact,
+}: ContactsListProps): JSX.Element {
+  return (
+    <ul>
+      {contacts.map(({ id, name, number }) => (
+        <Item key={id}>
+          <Contact
+            name={name}
+            number={number}
+            onDeleteContact={() => onDeleteContact(id)}
+          />
+        </Item>
+      ))}
+    </ul>
+  );
 }
