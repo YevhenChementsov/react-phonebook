@@ -25,6 +25,7 @@
     "paths": {
       "components/*": ["./src/components/*"],
       "constants/*": ["./src/constants/*"],
+      "helpers/*": ["./src/helpers/*"],
       "icons/*": ["./src/icons/*"]
     }
   },
