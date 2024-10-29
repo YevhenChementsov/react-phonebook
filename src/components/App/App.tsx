@@ -1,13 +1,16 @@
 import { Component } from 'react';
-
-import { Clock } from 'components/Clock/Clock';
-import { Contact, ContactsList } from 'components/ContactsList/ContactsList';
-import { IconsWrapper } from 'components/IconsWrapper/IconsWrapper';
-import { SearchFilter } from 'components/SearchFilter/SearchFilter';
 import { ToastContainer, toast } from 'react-toastify';
 import { v4 as uuidv4 } from 'uuid';
 
 import { ContactAddForm } from 'components/AddContactForm/AddContactForm';
+import { Clock } from 'components/Clock/Clock';
+import { Contact, ContactsList } from 'components/ContactsList/ContactsList';
+import { IconsWrapper } from 'components/IconsWrapper/IconsWrapper';
+import { SearchFilter } from 'components/SearchFilter/SearchFilter';
+
+import Open from 'icons/add.svg?react';
+import Close from 'icons/return.svg?react';
+
 import {
   ButtonIcon,
   Container,
@@ -168,11 +171,11 @@ export default class App extends Component<Record<string, never>, AppState> {
         </Main>
         <Footer>
           <ButtonIcon onClick={toggle} disabled={contacts.length === 9}>
-            {/* {visible ? (
+            {visible ? (
               <Close width="24" height="24" />
             ) : (
               <Open width="24" height="24" />
-            )} */}
+            )}
           </ButtonIcon>
         </Footer>
         <ToastContainer />
