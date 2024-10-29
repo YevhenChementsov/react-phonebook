@@ -1,4 +1,4 @@
-import { Contact } from './Contact/Contact';
+import { ContactItem } from './ContactItem/ContactItem';
 import { Item } from './ContactsList.styled';
 
 export interface Contact {
@@ -7,10 +7,10 @@ export interface Contact {
   number: string;
 }
 
-interface ContactsListProps {
+type ContactsListProps = {
   contacts: Contact[];
   onDeleteContact: (id: string) => void;
-}
+};
 
 export function ContactsList({
   contacts,
@@ -20,7 +20,7 @@ export function ContactsList({
     <ul>
       {contacts.map(({ id, name, number }) => (
         <Item key={id}>
-          <Contact
+          <ContactItem
             name={name}
             number={number}
             onDeleteContact={() => onDeleteContact(id)}

@@ -4,7 +4,10 @@ import { v4 as uuidv4 } from 'uuid';
 
 import { ContactAddForm } from 'components/AddContactForm/AddContactForm';
 import { Clock } from 'components/Clock/Clock';
-import { Contact, ContactsList } from 'components/ContactsList/ContactsList';
+import {
+  type Contact,
+  ContactsList,
+} from 'components/ContactsList/ContactsList';
 import { IconsWrapper } from 'components/IconsWrapper/IconsWrapper';
 import { SearchFilter } from 'components/SearchFilter/SearchFilter';
 

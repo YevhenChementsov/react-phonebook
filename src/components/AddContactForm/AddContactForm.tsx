@@ -1,9 +1,13 @@
 import { Form, Formik, FormikHelpers } from 'formik';
-import { nameRegExp, phoneRegExp } from 'helpers/validationRegExp';
 import { v4 as uuidv4 } from 'uuid';
 import * as Yup from 'yup';
-import { SubmitFormButton } from './AddContactForm.styled';
+
 import { ContactFormInput } from './ContactFormInput/ContactFormInput';
+
+import { getErrorMessage } from 'helpers/getErrorMessage';
+import { nameRegExp, phoneRegExp } from 'helpers/validationRegExp';
+
+import { SubmitFormButton } from './AddContactForm.styled';
 
 interface ContactAddFormProps {
   onSubmit: (values: ContactFormValues) => void;
@@ -49,7 +53,9 @@ export function ContactAddForm({ onSubmit }: ContactAddFormProps) {
       await Promise.resolve(onSubmit(values));
       resetForm();
     } catch (error) {
-      console.log(error);
+      return {
+        message: getErrorMessage(error),
+      };
     } finally {
       setSubmitting(false);
     }
@@ -69,7 +75,7 @@ export function ContactAddForm({ onSubmit }: ContactAddFormProps) {
           type="text"
         />
         <ContactFormInput
-          label="Number"
+          label="Phone Number"
           name="number"
           id={numberInputId}
           type="tel"

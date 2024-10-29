@@ -1,9 +1,10 @@
 import { Component } from 'react';
+
 import { Time } from './Clock.styled';
 
-interface ClockState {
+type ClockState = {
   date: Date;
-}
+};
 
 export class Clock extends Component<Record<string, never>, ClockState> {
   private timeID!: NodeJS.Timeout;
